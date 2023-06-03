@@ -6,14 +6,14 @@
 class Starship : public QGraphicsItem
 {
 public:
-    Starship();
+    //Starship();
 
     inline QRectF boundingRect() const override;
     inline QPainterPath shape() const override;
     inline void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
-    void advance(int step) override;
+    //void advance(int step) override;
 
     qreal angle = 0;
     qreal speed = 0;

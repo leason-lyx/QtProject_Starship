@@ -9,6 +9,8 @@
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
 
+//Starship::Starship(){}
+
 static qreal normalizeAngle(qreal angle)
 {
     while (angle < 0)
@@ -56,3 +58,5 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
     painter->drawRect(-24, 18, 8, 2);
     painter->drawRect(16, 18, 8, 2);
 }
+
+//void advance(int step){}
