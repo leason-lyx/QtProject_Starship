@@ -17,9 +17,9 @@ set(PROJECT_SOURCES
         starship.cpp
         starship.h
         starship.ui
-        myScene.h
-        myScene.cpp
         resources.qrc
+        game_scene.h
+        game_scene.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

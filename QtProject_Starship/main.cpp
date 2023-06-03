@@ -2,14 +2,14 @@
 #include <QtWidgets>
 #include <QStyle>
 
-#include "myScene.h"
 #include "starship.h"
 #include "starship.cpp"
+#include "game_scene.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    myScene scene;
+    QGraphicsScene scene;
     scene.setSceneRect(-300, -300, 600, 600);
     //! [1] //! [2]
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -19,9 +19,8 @@ int main(int argc, char *argv[])
     ship.setPos(QPointF(0,0));
     scene.addItem(&ship);
     //! [4]
-    QGraphicsView view(&scene);
+    game_scene view(&scene);
     view.setRenderHint(QPainter::Antialiasing);
-    view.setBackgroundBrush(QPixmap(":/images/background.jpg"));
     //! [4] //! [5]
     view.setCacheMode(QGraphicsView::CacheBackground);
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
