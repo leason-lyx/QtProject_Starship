@@ -9,7 +9,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    myScene scene;
+    QWidget widget;
+    myScene scene(&widget);
     scene.setSceneRect(-300, -300, 600, 600);
     //! [1] //! [2]
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
@@ -18,21 +19,20 @@ int main(int argc, char *argv[])
     Starship ship;
     ship.setPos(QPointF(0,0));
     scene.addItem(&ship);
-    scene.addPixmap(QPixmap(":/images/background.jpg"));
-    scene.drawBackground(QPainter(),QRectF(0,0,2,2));
+    //scene.addPixmap(QPixmap(":/images/background.jpg"));
+    //scene.drawBackground(QPainter(),QRectF(0,0,2,2));
     //! [4]
-    QGraphicsView view(&scene);
-    /*
+    QGraphicsView view(&scene,&widget);
     view.setRenderHint(QPainter::Antialiasing);
-    view.setBackgroundBrush(QPixmap(":/images/background.jpg"));
+    view.setBackgroundBrush(QPixmap(":/background.jpg"));
     //! [4] //! [5]
     view.setCacheMode(QGraphicsView::CacheBackground);
     view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
     view.setDragMode(QGraphicsView::ScrollHandDrag);
     //! [5] //! [6]
-    */
-    view.setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Starship Trek"));
+    view.setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "fuck"));
     view.resize(400, 300);
     view.show();
+
     return a.exec();
 }

@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         starship.ui
         myScene.h
         myScene.cpp
+        background.jpg
+        mywidget.cpp
+        mywidget.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

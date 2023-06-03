@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Starship</class>
- <widget class="QWidget" name="Starship">
+ <class>myWidget</class>
+ <widget class="QWidget" name="myWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
