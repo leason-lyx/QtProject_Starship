@@ -13,7 +13,7 @@ public:
     inline void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
 
-    //void advance(int step) override;
+    inline void advance(int step) override;
 
     qreal angle = 0;
     qreal speed = 0;

@@ -59,4 +59,13 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
     painter->drawRect(16, 18, 8, 2);
 }
 
-//void advance(int step){}
+void Starship::advance(int step){
+    if(!step)return;
+    else{
+        angle += 1 / 10.0;
+        normalizeAngle(angle);
+        while(speed<=15.0)speed += 1 / 10.0;
+        setRotation(rotation() + 1 / 5.0);
+        setPos(mapToParent(0, -(3 + sin(speed) * 3)));
+    }
+}

@@ -29,5 +29,9 @@ int main(int argc, char *argv[])
     view.setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Starship Trek"));
     view.resize(800, 600);
     view.show();
+
+    QTimer timer;
+    QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
+    timer.start(1000 / 33);
     return a.exec();
 }
