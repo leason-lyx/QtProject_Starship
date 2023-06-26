@@ -12,16 +12,19 @@ void game_scene::showEvent(QShowEvent* event)
 {
     QGraphicsView::showEvent(event);
 
-    QPixmap pixmap(":/images/background.jpg");
+    QPixmap pixmap(":/images/background2.jpg");
     pixmap = pixmap.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-    this->setBackgroundBrush(pixmap);
+//    pixmap = pixmap.scaled(this->size(), Qt::KeepAspectRatio);
+    QBrush brush(pixmap);
+    this->setBackgroundBrush(brush);
 }
 
 void game_scene::resizeEvent(QResizeEvent* event)
 {
     QGraphicsView::resizeEvent(event);
 
-    QPixmap pixmap(":/images/background.jpg");
-    pixmap = pixmap.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    QPixmap pixmap(":/images/background.png");
+//    pixmap = pixmap.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    pixmap = pixmap.scaled(this->size(),Qt::IgnoreAspectRatio);
     this->setBackgroundBrush(pixmap);
 }
