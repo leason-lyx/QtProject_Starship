@@ -2,13 +2,9 @@
     <qresource prefix="/images"/>
     <qresource prefix="/">
         <file>images/background.jpg</file>
-    </qresource>
-    <qresource prefix="/images"/>
-    <qresource prefix="/">
         <file>images/background2.jpg</file>
-    </qresource>
-    <qresource prefix="/images"/>
-    <qresource prefix="/">
         <file>images/background.png</file>
+        <file>images/background3.jpg</file>
+        <file>images/background4.jpg</file>
     </qresource>
 </RCC>
