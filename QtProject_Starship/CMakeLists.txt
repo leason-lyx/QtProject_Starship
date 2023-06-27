@@ -20,6 +20,9 @@ set(PROJECT_SOURCES
         resources.qrc
         game_scene.h
         game_scene.cpp
+        main_menu.h
+        main_menu.cpp
+        main_menu.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
