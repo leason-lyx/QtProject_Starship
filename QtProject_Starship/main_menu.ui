@@ -6,20 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
-    <height>370</height>
+    <width>701</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>150</y>
-     <width>80</width>
-     <height>18</height>
+     <x>270</x>
+     <y>170</y>
+     <width>101</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
@@ -29,11 +32,14 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>40</y>
+     <x>150</x>
+     <y>60</y>
      <width>361</width>
      <height>81</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -49,10 +55,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>200</y>
-     <width>80</width>
-     <height>18</height>
+     <x>270</x>
+     <y>250</y>
+     <width>101</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
@@ -62,16 +68,40 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>250</y>
-     <width>80</width>
-     <height>18</height>
+     <x>270</x>
+     <y>330</y>
+     <width>101</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
     <string>制作人员</string>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>701</width>
+     <height>461</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/main_menu.jpg);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>textBrowser</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>pushButton_3</zorder>
  </widget>
  <resources/>
  <connections/>
