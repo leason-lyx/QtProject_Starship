@@ -1,9 +1,18 @@
 #include "main_menu.h"
+#include "clock_prompt.h"
 #include "ui_main_menu.h"
 
 #include <QtWidgets>
-#include <QStyle>
+#include <QApplication>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <QTimer>
+#include <QPainter>
+#include <QFont>
+#include <QRectF>
 #include <QDebug>
+#include <QGraphicsTextItem>
 
 main_menu::main_menu(QWidget *parent) :
     QDialog(parent),
@@ -28,7 +37,12 @@ void main_menu::on_pushButton_clicked()
     ship->setPos(QPointF(0,0));
     scene->addItem(ship);
 
-    view = new game_scene(scene);
+    //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");
+    clock_prompt* clock_object=new clock_prompt();
+    clock_object->setPos(50,50);
+    scene->addItem(clock_object);
+
+    game_scene *view = new game_scene(scene);
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);

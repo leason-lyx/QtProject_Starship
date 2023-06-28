@@ -23,6 +23,8 @@ set(PROJECT_SOURCES
         main_menu.h
         main_menu.cpp
         main_menu.ui
+        clock_prompt.h
+        clock_prompt.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
