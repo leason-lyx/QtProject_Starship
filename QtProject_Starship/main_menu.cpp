@@ -39,7 +39,7 @@ void main_menu::on_pushButton_clicked()
 
     //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");
     clock_prompt* clock_object=new clock_prompt();
-    clock_object->setPos(50,50);
+    clock_object->setPos(500,450);
     scene->addItem(clock_object);
 
     game_scene *view = new game_scene(scene);

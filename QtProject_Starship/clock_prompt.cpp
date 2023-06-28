@@ -17,11 +17,11 @@ void clock_prompt::update_Time(){
 }
 //void advance(int step){}
 void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,QWidget *widget) {
-    QFont font("Arial",20);
+    QFont font("Arial",12);
     QColor color(Qt::yellow);
     painter->setFont(font);
     painter->setPen(color);
-    QRect rect(-100,-100,200,200);
+    QRect rect(-150,-150,250,250);
     painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(seconds));
 }
 QRectF clock_prompt::boundingRect() const {
