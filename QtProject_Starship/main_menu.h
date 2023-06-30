@@ -5,6 +5,7 @@
 #include "starship.h"
 #include "starship.cpp"
 #include "game_scene.h"
+#include "myScene.h"
 
 namespace Ui {
 class main_menu;
@@ -25,8 +26,8 @@ private:
     Ui::main_menu *ui;
 
 private:
-    QGraphicsScene *scene;
-    Starship *ship;
+    myScene *scene;
+//    Starship *ship;
     game_scene *view;
     QTimer *timer;
 };

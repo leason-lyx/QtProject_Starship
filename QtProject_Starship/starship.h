@@ -16,7 +16,9 @@ public:
     inline void advance(int step) override;
 
     qreal angle = 0;
-    qreal speed = 0;
+    qreal angular_v = 0;//angular velocity
+    qreal angular_a = 0;//angular_acceleration
+    qreal velocity = 0;//velocity
     qreal acceleration = 0;
     qreal headDirection = 0;
 };

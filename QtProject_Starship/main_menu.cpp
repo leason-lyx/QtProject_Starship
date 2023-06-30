@@ -29,13 +29,13 @@ main_menu::~main_menu()
 
 void main_menu::on_pushButton_clicked()
 {
-    scene = new QGraphicsScene();
+    scene = new myScene();
     scene->setSceneRect(-300, -300, 600, 600);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    ship = new Starship();
-    ship->setPos(QPointF(0,0));
-    scene->addItem(ship);
+//    ship = new Starship();
+//    ship->setPos(QPointF(0,0));
+//    scene->addItem(ship);
 
     //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");
     clock_prompt* clock_object=new clock_prompt();

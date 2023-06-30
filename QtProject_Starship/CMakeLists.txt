@@ -25,6 +25,8 @@ set(PROJECT_SOURCES
         main_menu.ui
         clock_prompt.h
         clock_prompt.cpp
+        myScene.h
+        myScene.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
