@@ -1,6 +1,7 @@
 #include "main_menu.h"
 #include "clock_prompt.h"
 #include "ui_main_menu.h"
+#include "credits.h"
 
 #include <QtWidgets>
 #include <QApplication>
@@ -54,5 +55,12 @@ void main_menu::on_pushButton_clicked()
     timer->start(1000 / 33);
 
     qDebug("timer complete");
+}
+
+
+void main_menu::on_pushButton_3_clicked()
+{
+    Credits* cre=new Credits;
+    cre->show();
 }
 
