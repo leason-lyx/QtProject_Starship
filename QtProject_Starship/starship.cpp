@@ -1,5 +1,5 @@
 #include "starship.h"
-
+#include "clock_prompt.h"
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QPainter>
@@ -9,8 +9,8 @@
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
 
-//Starship::Starship(){}
-
+Starship::Starship(){}
+Starship::Starship(QGraphicsItem *x):QGraphicsItem(x){}
 static qreal normalizeAngle(qreal angle)
 {
     while (angle < 0)
@@ -82,6 +82,7 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
 
 void Starship::advance(int step){
     if(!step)return;
+    if(!operate)return ;
     else{
         //velocity
         velocity = velocity + acceleration;

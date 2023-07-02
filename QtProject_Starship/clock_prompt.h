@@ -7,6 +7,7 @@
 class clock_prompt : public QGraphicsItem, public QObject
 {
 public:
+    static qreal TIME_LIMIT;
     clock_prompt() ;
     QTimer *timer;
     qreal seconds=0;

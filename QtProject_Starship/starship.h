@@ -6,8 +6,8 @@
 class Starship : public QGraphicsItem
 {
 public:
-    //Starship();
-
+    Starship();
+    Starship(QGraphicsItem *item);
     inline QRectF boundingRect() const override;
     inline QPainterPath shape() const override;
     inline void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -21,5 +21,6 @@ public:
     qreal velocity = 0;//velocity
     qreal acceleration = 0;
     qreal headDirection = 0;
+    bool operate=1;
 };
 #endif // STARSHIP_H
