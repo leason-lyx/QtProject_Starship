@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         credits.h
         credits.cpp
         credits.ui
+        planet.h
+        planet.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

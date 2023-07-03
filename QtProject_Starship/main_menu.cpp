@@ -36,7 +36,7 @@ void main_menu::on_pushButton_clicked()
 
     //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");
     clock_prompt* clock_object=new clock_prompt();
-    clock_object->setPos(500,450);
+    clock_object->setPos(250,200);
     scene->addItem(clock_object);
 
     game_scene *view = new game_scene(scene);
@@ -51,8 +51,11 @@ void main_menu::on_pushButton_clicked()
     qDebug("view show complete");
 
     timer = new QTimer();
+    timerTwo = new QTimer();
     QObject::connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
+    QObject::connect(timerTwo, &QTimer::timeout, scene, &myScene::Stop);
     timer->start(1000 / 33);
+    timerTwo->start(1000);
 
     qDebug("timer complete");
 }
