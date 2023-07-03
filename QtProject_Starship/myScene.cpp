@@ -11,6 +11,9 @@
 #include <QList>
 
 myScene::myScene(){
+    star.setPos(QPointF(star.px, star.py));
+    this->addItem(&star);
+    setFocusItem(&star);
     ship.setPos(QPointF(0,0));
     this->addItem(&ship);
     setFocusItem(&ship);
@@ -45,7 +48,7 @@ void myScene::keyReleaseEvent(QKeyEvent * event){
 
 
 void myScene::Stop(){
-    Time+=1;
+    Time+=0.5;
     //QTime currentTime=QTime::currentTime();
     if(Time>=stopTime){
         ship.operate=0;

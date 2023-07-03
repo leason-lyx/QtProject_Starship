@@ -2,6 +2,7 @@
 #define MYSCENE_H
 //#include "qgraphicsitem.h"
 #include "starship.h"
+#include "planet.h"
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QKeyEvent>
@@ -11,6 +12,7 @@
 class myScene : public QGraphicsScene {
     Q_OBJECT;
 public:
+    Planet star;
     Starship ship;
     myScene();
     //    ship.setPos(QPointF(0,0));

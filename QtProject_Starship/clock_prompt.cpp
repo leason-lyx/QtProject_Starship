@@ -18,9 +18,9 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setPen(color);
     QRect rect(-200,-200,500,500);
     if(seconds<=clock_prompt::TIME_LIMIT)
-    painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(seconds));
+        painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(seconds));
     else
-    painter->drawText(rect, Qt::AlignCenter, QString("TIME IS UP, PLEASE EXIT"));
+        painter->drawText(rect, Qt::AlignCenter, QString("TIME IS UP, PLEASE EXIT"));
 }
 QRectF clock_prompt::boundingRect() const {
     return QRectF(-100,-100,200,200);

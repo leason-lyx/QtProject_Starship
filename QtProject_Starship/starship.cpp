@@ -5,6 +5,7 @@
 #include <QStyleOption>
 #include <QtMath>
 #include <iostream>
+#include <QGraphicsScene>
 
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
@@ -27,7 +28,8 @@ QRectF Starship::boundingRect() const{
 
 QPainterPath Starship::shape() const{
     QPainterPath path;
-    path.addRect(-8, -8, 16, 28);
+    path.addEllipse(-8, -20, 16, 16);
+    path.addRect(-8, -12, 16, 20);
     return path;
 }
 
@@ -80,11 +82,21 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
     painter->drawRect(16, 18, 8, 2);
 }
 
+int Starship::type() const{
+    // 返回自定义的图形项类型
+    return UserType + 1;
+}
+
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
     if(!step)return;
-    if(!operate)return ;
+    //if(!operate)return ;
     else{
+        if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
+            velocity = 0;
+            angular_v = 0;
+        }
+
         //velocity
         velocity = velocity + acceleration;
         if(velocity >= 5)velocity = 5;
@@ -100,6 +112,7 @@ void Starship::advance(int step){
         if(angular_a == 0 && angular_v > 0) angular_v -= 0.1;
         else if(angular_a == 0 && angular_v < 0) angular_v += 0.1;
 
+        normalizeAngle(angle);
         setRotation(angle);
         setPos(mapToParent(0, -velocity));
     }

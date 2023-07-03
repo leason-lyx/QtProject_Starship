@@ -14,6 +14,7 @@ public:
                QWidget *widget) override;
 
     inline void advance(int step) override;
+    int type() const override;
 
     qreal angle = 0;
     qreal angular_v = 0;//angular velocity
