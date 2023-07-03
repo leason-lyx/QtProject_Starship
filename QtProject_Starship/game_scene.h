@@ -12,7 +12,7 @@ class game_scene: public QGraphicsView
 public:
     game_scene(QGraphicsScene* scene);
     QTime stopTime;
-private slots:
+public slots:
     void Stop();
 protected:
     void showEvent(QShowEvent* event) override;

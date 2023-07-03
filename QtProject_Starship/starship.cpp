@@ -1,10 +1,10 @@
+//#ifndef STARSHIP_H
+//#define STARSHIP_H
 #include "starship.h"
-#include "clock_prompt.h"
-#include <QGraphicsItem>
-#include <QGraphicsScene>
 #include <QPainter>
 #include <QStyleOption>
 #include <QtMath>
+#include <iostream>
 
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
@@ -81,8 +81,9 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
 }
 
 void Starship::advance(int step){
+    std::cerr<<this->operate<<std::endl;
     if(!step)return;
-    if(!operate)return ;
+    //if(!operate)return ;
     else{
         //velocity
         velocity = velocity + acceleration;

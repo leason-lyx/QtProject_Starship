@@ -1,7 +1,6 @@
 #ifndef MYSCENE_H
 #define MYSCENE_H
 //#include "qgraphicsitem.h"
-#include "qdatetime.h"
 #include "starship.h"
 #include <QGraphicsView>
 #include <QGraphicsScene>
@@ -18,8 +17,9 @@ public:
     //    scene.addItem(&ship);
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
-    QTime stopTime;
-private slots:
+    qreal stopTime=10;
+    qreal Time=0;
+public slots:
     void Stop();
 };
 

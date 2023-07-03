@@ -1,11 +1,11 @@
 #include "myScene.h"
-#include "starship.h"
-#include "starship.cpp"
+//#include "starship.h"
+//#include "starship.cpp"
 
-#include <QGraphicsItem>
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QKeyEvent>
+//#include <QGraphicsItem>
+//#include <QGraphicsView>
+//#include <QGraphicsScene>
+//#include <QKeyEvent>
 #include <QDebug>
 #include <QTimer>
 #include <QList>
@@ -19,8 +19,8 @@ myScene::myScene(){
     timer->setInterval(1000);
     connect(timer,&QTimer::timeout,this,&myScene::Stop);
     timer->start();
-    stopTime=QTime(0,0,10);
-*/
+    */
+
 }
 
 void myScene::keyPressEvent(QKeyEvent * event){
@@ -43,13 +43,11 @@ void myScene::keyReleaseEvent(QKeyEvent * event){
     }
 }
 
+
 void myScene::Stop(){
-    QTime currentTime=QTime::currentTime();
-    if(currentTime>=this->stopTime){
-        QList<QGraphicsItem *> itemList=items();
-        for(QGraphicsItem *item : itemList){
-            Starship *sitem=dynamic_cast<Starship*>(item);
-            sitem->operate=0;
-        }
+    Time+=0.5;
+    //QTime currentTime=QTime::currentTime();
+    if(Time>=stopTime){
+        ship.operate=0;
     }
 }
