@@ -83,7 +83,7 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
     if(!step)return;
-    //if(!operate)return ;
+    if(!operate)return ;
     else{
         //velocity
         velocity = velocity + acceleration;

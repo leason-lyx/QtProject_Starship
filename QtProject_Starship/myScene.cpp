@@ -45,7 +45,7 @@ void myScene::keyReleaseEvent(QKeyEvent * event){
 
 
 void myScene::Stop(){
-    Time+=0.5;
+    Time+=1;
     //QTime currentTime=QTime::currentTime();
     if(Time>=stopTime){
         ship.operate=0;
