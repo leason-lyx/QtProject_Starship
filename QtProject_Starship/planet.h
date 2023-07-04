@@ -10,8 +10,7 @@ public:
     inline QPainterPath shape() const override;
     inline void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                       QWidget *widget) override;
-//    int type() const override;
-//    inline void advance(int step) override;
+    inline int type() const override;
 
     qreal radius;
     qreal mass;
