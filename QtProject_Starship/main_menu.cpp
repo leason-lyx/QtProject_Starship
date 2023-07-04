@@ -2,6 +2,9 @@
 #include "clock_prompt.h"
 #include "ui_main_menu.h"
 #include "credits.h"
+#include "PageSwitcher.h"
+#include "walkthrough_page1.h"
+#include "walkthrough_page2.h"
 
 #include <QtWidgets>
 #include <QApplication>
@@ -60,10 +63,22 @@ void main_menu::on_pushButton_clicked()
     qDebug("timer complete");
 }
 
+void main_menu::on_pushButton_2_clicked()
+{
+    Walkthrough_page1* wp1=new Walkthrough_page1;
+    Walkthrough_page2* wp2=new Walkthrough_page2;
+    PageSwitcher* pageSwitcher=new PageSwitcher;
+    pageSwitcher->addPage(wp1);
+    pageSwitcher->addPage(wp2);
+    pageSwitcher->show();
+}
+
+
 
 void main_menu::on_pushButton_3_clicked()
 {
     Credits* cre=new Credits;
     cre->show();
 }
+
 

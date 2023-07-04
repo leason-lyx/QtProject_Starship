@@ -31,6 +31,17 @@ set(PROJECT_SOURCES
         credits.ui
         planet.h
         planet.cpp
+
+        pageswitcher.h
+        pageswitcher.cpp
+
+        walkthrough_page1.h
+        walkthrough_page1.cpp
+        walkthrough_page1.ui
+
+        walkthrough_page2.h
+        walkthrough_page2.cpp
+        walkthrough_page2.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
