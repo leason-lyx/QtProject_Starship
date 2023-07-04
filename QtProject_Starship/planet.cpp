@@ -43,6 +43,7 @@ void Planet::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget 
     painter->drawEllipse(-radius, -radius, 2 * radius, 2 * radius);
 }
 
+
 //void Planet::advance(int step){
 //    if(!step)return;
 //    else{

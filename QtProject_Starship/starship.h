@@ -21,6 +21,8 @@ public:
     qreal angular_a = 0;//angular_acceleration
     qreal velocity = 0;//velocity
     qreal acceleration = 0;
+    qreal impulse = 0;//impulse when hit the planet
+    qreal angular_I = 0;
     qreal headDirection = 0;
     bool operate=1;
 };
