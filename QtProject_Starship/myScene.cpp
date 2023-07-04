@@ -31,8 +31,8 @@ void myScene::keyPressEvent(QKeyEvent * event){
     switch(key){
     case Qt::Key_W: ship.acceleration = 0.1;break;
     case Qt::Key_S: ship.acceleration = -0.1;break;
-    case Qt::Key_A: ship.angular_a -= 0.1;break;
-    case Qt::Key_D: ship.angular_a += 0.1;break;
+    case Qt::Key_A: ship.angular_a = -0.1;break;
+    case Qt::Key_D: ship.angular_a = 0.1;break;
     }
 }
 

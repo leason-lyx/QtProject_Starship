@@ -1,11 +1,13 @@
 //#ifndef STARSHIP_H
 //#define STARSHIP_H
 #include "starship.h"
+#include "planet.h"
 #include <QPainter>
 #include <QStyleOption>
 #include <QtMath>
 #include <iostream>
 #include <QGraphicsScene>
+#include <QTime>
 
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
@@ -83,11 +85,75 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
     //    painter->setBrush(QColorConstants::Svg::burlywood);
     painter->drawRect(-24, 18, 8, 2);
     painter->drawRect(16, 18, 8, 2);
+
+    //Fire
+    if(acceleration > 0){
+        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+        linear = QLinearGradient(QPointF(-8, 7), QPointF(-8, 23));
+        linear.setColorAt(0, QColorConstants::Svg::ivory);
+        linear.setColorAt(1, QColorConstants::Svg::crimson);
+        linear.setSpread(QGradient::PadSpread);
+        painter->setPen(Qt::transparent);
+        painter->setBrush(linear);
+        for(int i = 1; i <= 24; i++){
+            qreal x = rand() % 16 - 8; qreal y = rand() % 16 + 7;
+            painter->drawEllipse(x, y, 3, 3);
+        }
+        update();
+    }
+    if(acceleration < 0){
+        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+        painter->setPen(QColorConstants::Svg::aliceblue);
+        painter->setBrush(QColorConstants::Svg::aliceblue);
+        for(int i = 1; i <= 8; i++){
+            qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 10;
+            qreal z = rand() % 8 + 16; qreal t = rand() % 8 + 10;
+            painter->drawEllipse(x, y, 1, 1);
+            painter->drawEllipse(z, t, 1, 1);
+        }
+        update();
+    }
+    if(angular_a > 0){
+        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+        painter->setPen(QColorConstants::Svg::lightyellow);
+        painter->setBrush(QColorConstants::Svg::lightyellow);
+        for(int i = 1; i <= 8; i++){
+            qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 20;
+            painter->drawEllipse(x, y, 1, 1);
+        }
+        for(int i = 1; i <= 8; i++){
+            qreal x = rand() % 8 + 16; qreal y = rand() % 8 + 10;
+            painter->drawEllipse(x, y, 1, 1);
+        }
+        update();
+    }
+    if(angular_a < 0){
+        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+        painter->setPen(QColorConstants::Svg::lightyellow);
+        painter->setBrush(QColorConstants::Svg::lightyellow);
+        for(int i = 1; i <= 8; i++){
+            qreal x = rand() % 8 + 16; qreal y = rand() % 8 + 20;
+            painter->drawEllipse(x, y, 1, 1);
+        }
+        for(int i = 1; i <= 8; i++){
+            qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 10;
+            painter->drawEllipse(x, y, 1, 1);
+        }
+        update();
+    }
 }
 
-int Starship::type() const{
-    // 返回自定义的图形项类型
-    return UserType + 1;
+//只检测对星球的碰撞
+QList<QGraphicsItem*> QGraphicsScene::collidingItems(const QGraphicsItem* item, Qt::ItemSelectionMode mode) const{
+    QList<QGraphicsItem*> allItems = this->items();
+    QList<QGraphicsItem*> collidingPlanets;
+    foreach(QGraphicsItem* anotherItem, allItems){
+        if(anotherItem == item)continue;
+        if(anotherItem->type()==Planet::UserType + 1)
+            if(item->collidesWithItem(anotherItem, mode))
+                collidingPlanets.append(anotherItem);
+    }
+    return collidingPlanets;
 }
 
 void Starship::advance(int step){
@@ -96,9 +162,10 @@ void Starship::advance(int step){
     //if(!operate)return ;
     else{
         if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
-            impulse = - velocity * 2;
+            if(fabs(velocity) <= 4)impulse = - velocity * 1.8;
+            else impulse = -velocity * 2;
             angular_I = - angular_v * 2;
-            setPos(mapToParent(0, velocity * 0.7));
+            setPos(mapToParent(0, velocity * 0.5));
         }
         else{
             impulse = 0;
