@@ -96,10 +96,6 @@ void Starship::advance(int step){
     //if(!operate)return ;
     else{
         if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
-
-            velocity = 0;
-            angular_v = 0;
-
             impulse = - velocity * 2;
             angular_I = - angular_v * 2;
             setPos(mapToParent(0, velocity * 0.7));
