@@ -1,16 +1,18 @@
+//#ifndef STARSHIP_H
+//#define STARSHIP_H
 #include "starship.h"
-
-#include <QGraphicsItem>
-#include <QGraphicsScene>
+//#include "myScene.h"
 #include <QPainter>
 #include <QStyleOption>
 #include <QtMath>
+#include <iostream>
+#include <QGraphicsScene>
 
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
 
-//Starship::Starship(){}
-
+Starship::Starship(){}
+Starship::Starship(QGraphicsItem *x):QGraphicsItem(x){}
 static qreal normalizeAngle(qreal angle)
 {
     while (angle < 0)
@@ -27,7 +29,10 @@ QRectF Starship::boundingRect() const{
 
 QPainterPath Starship::shape() const{
     QPainterPath path;
-    path.addRect(-8, -8, 16, 28);
+    path.addEllipse(-8, -20, 16, 16);
+    path.addRect(-8, -12, 16, 20);
+    path.addRect(-24, 18, 8, 2);
+    path.addRect(16, 18, 8, 2);
     return path;
 }
 
@@ -81,23 +86,36 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
 }
 
 void Starship::advance(int step){
+    std::cerr<<this->operate<<std::endl;
     if(!step)return;
+    //if(!operate)return ;
     else{
+        if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
+            impulse = - velocity * 2;
+            angular_I = - angular_v * 2;
+            setPos(mapToParent(0, velocity * 0.7));
+        }
+        else{
+            impulse = 0;
+            angular_I = 0;
+        }
+
         //velocity
-        velocity = velocity + acceleration;
+        velocity = velocity + acceleration + impulse;
         if(velocity >= 5)velocity = 5;
         if(velocity <= -3)velocity = -3;
         if(acceleration == 0 && velocity > 0) velocity -= 0.01;
         else if(acceleration == 0 && velocity < 0) velocity += 0.01;
 
         //angular velocity
-        angular_v = angular_v + angular_a;
+        angular_v = angular_v + angular_a + angular_I;
         angle = angle + angular_v;
         if(angular_v >= 3)angular_v = 3;
         if(angular_v <= -3)angular_v = -3;
         if(angular_a == 0 && angular_v > 0) angular_v -= 0.1;
         else if(angular_a == 0 && angular_v < 0) angular_v += 0.1;
 
+        normalizeAngle(angle);
         setRotation(angle);
         setPos(mapToParent(0, -velocity));
     }

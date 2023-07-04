@@ -2,8 +2,6 @@
 #define MAIN_MENU_H
 
 #include <QDialog>
-#include "starship.h"
-#include "starship.cpp"
 #include "game_scene.h"
 #include "myScene.h"
 
@@ -22,6 +20,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::main_menu *ui;
 
@@ -30,6 +30,7 @@ private:
 //    Starship *ship;
     game_scene *view;
     QTimer *timer;
+    QTimer *timerTwo;
 };
 
 #endif // MAIN_MENU_H

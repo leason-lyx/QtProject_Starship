@@ -16,7 +16,6 @@ set(PROJECT_SOURCES
         main.cpp
         starship.cpp
         starship.h
-        starship.ui
         resources.qrc
         game_scene.h
         game_scene.cpp
@@ -27,6 +26,11 @@ set(PROJECT_SOURCES
         clock_prompt.cpp
         myScene.h
         myScene.cpp
+        credits.h
+        credits.cpp
+        credits.ui
+        planet.h
+        planet.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
