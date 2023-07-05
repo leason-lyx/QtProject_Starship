@@ -2,17 +2,17 @@
 #define STARSHIP_H
 
 #include <QGraphicsItem>
+#include <iostream>
 
 class Starship : public QGraphicsItem
 {
 public:
-    Starship();
-    Starship(QGraphicsItem *item);
+    Starship() = default;
+    //Starship(QGraphicsItem *item);
     inline QRectF boundingRect() const override;
     inline QPainterPath shape() const override;
     inline void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
-
     inline void advance(int step) override;
     int type() const override;
 

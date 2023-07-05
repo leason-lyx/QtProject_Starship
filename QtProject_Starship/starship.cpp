@@ -5,15 +5,14 @@
 #include <QPainter>
 #include <QStyleOption>
 #include <QtMath>
-#include <iostream>
 #include <QGraphicsScene>
 #include <QTime>
 
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
 
-Starship::Starship(){}
-Starship::Starship(QGraphicsItem *x):QGraphicsItem(x){}
+//Starship::Starship(){}
+//Starship::Starship(QGraphicsItem *x):QGraphicsItem(x){}
 static qreal normalizeAngle(qreal angle)
 {
     while (angle < 0)
@@ -38,7 +37,7 @@ QPainterPath Starship::shape() const{
     return path;
 }
 
-void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->setRenderHint(QPainter::Antialiasing, true);
     //Header
@@ -159,7 +158,7 @@ QList<QGraphicsItem*> QGraphicsScene::collidingItems(const QGraphicsItem* item, 
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
     if(!step)return;
-    //if(!operate)return ;
+    if(!operate)return ;
     else{
         if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
             if(fabs(velocity) <= 4)impulse = - velocity * 1.8;
@@ -192,4 +191,8 @@ void Starship::advance(int step){
         setRotation(angle);
         setPos(mapToParent(0, -velocity));
     }
+}
+
+int Starship::type() const{
+    return UserType+1;
 }
