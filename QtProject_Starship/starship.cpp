@@ -7,6 +7,7 @@
 #include <QtMath>
 #include <QGraphicsScene>
 #include <QTime>
+#include <typeinfo>
 
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
