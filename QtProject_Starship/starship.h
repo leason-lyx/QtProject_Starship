@@ -1,7 +1,9 @@
 #ifndef STARSHIP_H
 #define STARSHIP_H
 
+#include "clock_prompt.h"
 #include <QGraphicsItem>
+#include <iostream>
 
 class Starship : public QGraphicsItem
 {
@@ -14,15 +16,22 @@ public:
                QWidget *widget) override;
 
     inline void advance(int step) override;
+    inline int type() const override;
 
     qreal angle = 0;
-    qreal angular_v = 0;//angular velocity
-    qreal angular_a = 0;//angular_acceleration
-    qreal velocity = 0;//velocity
-    qreal acceleration = 0;
-    qreal impulse = 0;//impulse when hit the planet
-    qreal angular_I = 0;
-    qreal headDirection = 0;
+    qreal angular_v = 0;//角速度
+    qreal angular_a = 0;//角加速度
+    qreal velocity = 0;//竖向速度
+    qreal velocity_x = 0;//横向速度
+    qreal acceleration = 0;//喷气加速度
+    qreal impulse = 0;//冲量
+    qreal impulse_x = 0;//横向冲量
+    qreal angular_I = 0;//角冲量
+    qreal gravity_y = 0;//重力竖向分量
+    qreal gravity_x = 0;//重力横向分量
+    bool detector = 0;
+    qreal life = MAX_LIFE;
     bool operate=1;
 };
+
 #endif // STARSHIP_H
