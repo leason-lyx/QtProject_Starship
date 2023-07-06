@@ -3,6 +3,8 @@
 //#include "qgraphicsitem.h"
 #include "starship.h"
 #include "planet.h"
+#include "clock_prompt.h"
+
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QKeyEvent>
@@ -12,15 +14,21 @@
 class myScene : public QGraphicsScene {
     Q_OBJECT;
 public:
-    Planet star;
+//    QList<Planet*> stars;
+    Planet star = Planet(300, 100, 50, 1284379128);
+    Planet star_2 = Planet(-230, 120, 60, 19854);
+    Planet star_3 = Planet(120, -110, 30, 1314322266);
+    Planet star_4 = Planet(0, 220, 70, 13144444);
+    Planet star_5 = Planet(-250, -160, 50, 234897);
     Starship ship;
     myScene();
     //    ship.setPos(QPointF(0,0));
     //    scene.addItem(&ship);
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
-    qreal stopTime=10;
-    qreal Time=0;
+    clock_prompt* newClock = new clock_prompt();
+    qreal stopTime = 10;
+    qreal Time = 0;
 public slots:
     void Stop();
 };

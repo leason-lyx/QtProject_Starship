@@ -11,9 +11,30 @@
 #include <QList>
 
 myScene::myScene(){
+//    while(stars.size() < 3){
+//        Planet star;
+//        if(fabs(star.px) > 100 && fabs(star.py) > 100){
+//            stars.append(&star);
+//            star.setPos(star.px, star.py);
+//            this->addItem(&star);
+//            setFocusItem(&star);
+//        }
+//    }
     star.setPos(QPointF(star.px, star.py));
     this->addItem(&star);
     setFocusItem(&star);
+    star_2.setPos(QPointF(star_2.px, star_2.py));
+    this->addItem(&star_2);
+    setFocusItem(&star_2);
+    star_3.setPos(QPointF(star_3.px, star_3.py));
+    this->addItem(&star_3);
+    setFocusItem(&star_3);
+    star_4.setPos(QPointF(star_4.px, star_4.py));
+    this->addItem(&star_4);
+    setFocusItem(&star_4);
+    star_5.setPos(QPointF(star_5.px, star_5.py));
+    this->addItem(&star_5);
+    setFocusItem(&star_5);
     ship.setPos(QPointF(0,0));
     this->addItem(&ship);
     setFocusItem(&ship);
@@ -48,9 +69,11 @@ void myScene::keyReleaseEvent(QKeyEvent * event){
 
 
 void myScene::Stop(){
-    Time+=0.5;
+    Time+=1;
+    newClock->life=ship.life;
     //QTime currentTime=QTime::currentTime();
     if(Time>=stopTime){
         ship.operate=0;
     }
+    if(newClock->life<=0) ship.operate=0;
 }
