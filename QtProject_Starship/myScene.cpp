@@ -49,8 +49,12 @@ void myScene::keyReleaseEvent(QKeyEvent * event){
 
 void myScene::Stop(){
     Time+=1;
+    newClock->life=ship.life;
     //QTime currentTime=QTime::currentTime();
     if(Time>=stopTime){
         ship.operate=0;
     }
+    if(newClock->life<=0) ship.operate=0;
 }
+
+

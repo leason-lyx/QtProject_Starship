@@ -156,8 +156,9 @@ QList<QGraphicsItem*> QGraphicsScene::collidingItems(const QGraphicsItem* item, 
 }
 
 void Starship::advance(int step){
-    std::cerr<<this->operate<<std::endl;
+    //std::cerr<<this->operate<<std::endl;
     if(!step)return;
+    if(life<=0) return ;
     if(!operate)return ;
     else{
         if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
@@ -165,6 +166,7 @@ void Starship::advance(int step){
             else impulse = -velocity * 2;
             angular_I = - angular_v * 2;
             setPos(mapToParent(0, velocity * 0.5));
+            life-=5;
         }
         else{
             impulse = 0;

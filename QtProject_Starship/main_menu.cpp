@@ -38,10 +38,12 @@ void main_menu::on_pushButton_clicked()
     scene->setSceneRect(-300, -300, 600, 600);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");
-    clock_prompt* clock_object=new clock_prompt();
+    /*clock_prompt* clock_object=new clock_prompt();
     clock_object->setPos(250,200);
-    scene->addItem(clock_object);
+    scene->addItem(clock_object);*/
+
+    scene->newClock->setPos(300,400);
+    scene->addItem(scene->newClock);
     
     game_scene *view = new game_scene(scene);
     view->setRenderHint(QPainter::Antialiasing);
@@ -57,6 +59,7 @@ void main_menu::on_pushButton_clicked()
     timer = new QTimer();
     timerTwo = new QTimer();
     QObject::connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
+    //QObject::connect(timer, &QTimer::timeout, scene, &myScene::checkLife);
     QObject::connect(timerTwo, &QTimer::timeout, scene, &myScene::Stop);
     timer->start(1000 / 33);
     timerTwo->start(1000);
