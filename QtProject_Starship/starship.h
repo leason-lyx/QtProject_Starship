@@ -5,16 +5,17 @@
 #include <QGraphicsItem>
 #include <iostream>
 
+//const qreal MAX_LIFE=20;
+//const qreal PER_DAMAGE=5;
 class Starship : public QGraphicsItem
 {
 public:
-    Starship();
-    Starship(QGraphicsItem *item);
+    Starship() = default;
+    //Starship(QGraphicsItem *item);
     inline QRectF boundingRect() const override;
     inline QPainterPath shape() const override;
     inline void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget) override;
-
     inline void advance(int step) override;
     inline int type() const override;
 

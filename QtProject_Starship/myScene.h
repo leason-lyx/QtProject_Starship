@@ -1,6 +1,7 @@
 #ifndef MYSCENE_H
 #define MYSCENE_H
 //#include "qgraphicsitem.h"
+#include "clock_prompt.h"
 #include "starship.h"
 #include "planet.h"
 #include "clock_prompt.h"
@@ -21,6 +22,7 @@ public:
     Planet star_4 = Planet(0, 220, 70, 13144444);
     Planet star_5 = Planet(-250, -160, 50, 234897);
     Starship ship;
+    clock_prompt* newClock=new clock_prompt();
     myScene();
     //    ship.setPos(QPointF(0,0));
     //    scene.addItem(&ship);
@@ -31,6 +33,7 @@ public:
     qreal Time = 0;
 public slots:
     void Stop();
+    //void checkLife();
 };
 
 #endif // MYSCENE_H

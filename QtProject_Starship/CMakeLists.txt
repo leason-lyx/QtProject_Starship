@@ -31,6 +31,8 @@ set(PROJECT_SOURCES
         credits.ui
         planet.h
         planet.cpp
+        scoring_point.h
+        scoring_point.cpp
 
         pageswitcher.h
         pageswitcher.cpp

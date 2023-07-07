@@ -43,14 +43,8 @@ void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidge
     painter->setRenderHint(QPainter::Antialiasing, true);
     //Header
     QLinearGradient linear(QPointF(-8, -20), QPointF(4, -20));
-    if(!detector){
-        linear.setColorAt(0, QColorConstants::Svg::goldenrod);
-        linear.setColorAt(1, QColorConstants::Svg::lightgoldenrodyellow);
-    }
-    else{
-        linear.setColorAt(0, QColorConstants::Svg::crimson);
-        linear.setColorAt(1, QColorConstants::Svg::lightpink);
-    }
+    linear.setColorAt(0, QColorConstants::Svg::goldenrod);
+    linear.setColorAt(1, QColorConstants::Svg::lightgoldenrodyellow);
     //    painter->setBrush(QColorConstants::Svg::goldenrod);
     linear.setSpread(QGradient::PadSpread);
     painter->setBrush(linear);
@@ -163,87 +157,44 @@ QList<QGraphicsItem*> QGraphicsScene::collidingItems(const QGraphicsItem* item, 
 }
 
 int Starship::type() const{
-    return Starship::UserType + 2;
+    // 返回自定义的图形项类型
+    return UserType + 1;
 }
 
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
-    if(!step || life<=0 || !operate)return;
-//    if(!operate || !step)return ;
+    if(!step || !operate)return;
+    //if(!operate)return ;
     else{
-        //gravity
-        QList<QGraphicsItem*> dangerPlanets;
-        QList<QGraphicsItem*> allItems = this->scene()->items();
-        foreach(QGraphicsItem* anotherItem, allItems){
-            if(anotherItem == this)continue;
-            if(anotherItem->type()==Planet::UserType + 1){
-                QLineF linetoPlanet(QPointF(0,0), mapFromItem(anotherItem, 0, 0));
-                if(linetoPlanet.length() <= 150){
-                    dangerPlanets.append(anotherItem);
-                    qreal r = linetoPlanet.length();
-                    qreal dx = linetoPlanet.dx(), dy = linetoPlanet.dy();
-                    qreal beta = atan2(dy, dx);
-                    normalizeAngle(beta);
-                    Planet* p = dynamic_cast<Planet*>(anotherItem);
-                    qreal G = 0.05 * p->mass/(r);
-                    gravity_y -= G * sin(beta);
-                    gravity_x += G * cos(beta);
-                }
-            }
-        }
-        if(!dangerPlanets.isEmpty())detector = 1;
-        else {
-            detector = 0;
-            gravity_x = 0;
-            gravity_y = 0;
-        }
-
         if(!scene()->collidingItems(this, Qt::IntersectsItemShape).isEmpty()){
-            if(fabs(velocity) <= 4)impulse = - velocity * 1.6;
-            else impulse = -velocity * 1.8;
-            impulse_x = -velocity_x * 1.8;
-            angular_I = - angular_v * 1.8;
-            setPos(mapToParent(-velocity_x - 0.1 * velocity_x/fabs(velocity_x), velocity + 0.1 * velocity/fabs(velocity)));
-            angle = angle - angular_v;
-            setRotation(angle);
-            if(impulse_x * impulse_x + impulse * impulse > 10)
-                life -= (impulse_x * impulse_x + impulse * impulse) * 0.3;
-            if(angular_I > 2)
-                life -= angular_I * 0.3;
+            if(fabs(velocity) <= 4)impulse = - velocity * 1.8;
+            else impulse = -velocity * 2;
+            angular_I = - angular_v * 2;
+            setPos(mapToParent(0, velocity * 0.5));
         }
         else{
             impulse = 0;
-            impulse_x = 0;
             angular_I = 0;
 
         }
 
         //velocity
-        velocity = velocity + acceleration + impulse + gravity_y;
+        velocity = velocity + acceleration + impulse;
         if(velocity >= 5)velocity = 5;
         if(velocity <= -3)velocity = -3;
         if(acceleration == 0 && velocity > 0) velocity -= 0.01;
         else if(acceleration == 0 && velocity < 0) velocity += 0.01;
-
-        if(velocity_x > 0) velocity_x -= 0.01;
-        else if(velocity_x < 0) velocity_x += 0.01;
-
-        //velocity_x
-        velocity_x = velocity_x + impulse_x + gravity_x;
-
     
         //angular velocity
         angular_v = angular_v + angular_a + angular_I;
         angle = angle + angular_v;
         if(angular_v >= 3)angular_v = 3;
         if(angular_v <= -3)angular_v = -3;
-        if(angular_a == 0 && angular_v > 0) angular_v -= 0.01;
-        else if(angular_a == 0 && angular_v < 0) angular_v += 0.01;
+        if(angular_a == 0 && angular_v > 0) angular_v -= 0.1;
+        else if(angular_a == 0 && angular_v < 0) angular_v += 0.1;
     
         normalizeAngle(angle);
         setRotation(angle);
-        setPos(mapToParent(velocity_x, -velocity));
-        gravity_y = 0;
-        gravity_x = 0;
+        setPos(mapToParent(0, -velocity));
     }
 }

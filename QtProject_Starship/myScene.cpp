@@ -80,3 +80,5 @@ void myScene::Stop(){
     }
     if(newClock->life<=0) ship.operate=0;
 }
+
+

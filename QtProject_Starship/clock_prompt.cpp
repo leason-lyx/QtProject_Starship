@@ -26,7 +26,6 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setPen(color);
     QRect rect(-100,-100,200,50);
     QRect rectEx(-100,-50,200,20);
-
     if(seconds<=clock_prompt::TIME_LIMIT && life>0){
         painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(seconds));
         painter->setBrush(colorEx);
