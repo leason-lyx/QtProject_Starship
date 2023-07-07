@@ -20,6 +20,7 @@ myScene::myScene(){
 //            setFocusItem(&star);
 //        }
 //    }
+    //5 stars
     star.setPos(QPointF(star.px, star.py));
     this->addItem(&star);
     setFocusItem(&star);
@@ -35,9 +36,24 @@ myScene::myScene(){
     star_5.setPos(QPointF(star_5.px, star_5.py));
     this->addItem(&star_5);
     setFocusItem(&star_5);
+
+    //clock and life-bar
     newClock->setPos(QPointF(350, -200));
     this->addItem(newClock);
     setFocusItem(newClock);
+
+    //coins
+//    coin.setPos(QPointF(coin.px, coin.py));
+//    this -> addItem(&coin);
+//    setFocusItem(&coin);
+
+    for(int i = 0; i < 7 ;i++){
+        coins[i].setPos(QPointF(coins[i].px, coins[i].py));
+        this -> addItem(&coins[i]);
+        setFocusItem(&coins[i]);
+    }
+
+    //starship
     ship.setPos(QPointF(0, 0));
     this->addItem(&ship);
     setFocusItem(&ship);
@@ -80,5 +96,3 @@ void myScene::Stop(){
     }
     if(newClock->life<=0) ship.operate=0;
 }
-
-

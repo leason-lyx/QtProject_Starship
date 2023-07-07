@@ -57,7 +57,6 @@ void main_menu::on_pushButton_clicked()
     timer = new QTimer();
     timerTwo = new QTimer();
     QObject::connect(timer, &QTimer::timeout, scene, &QGraphicsScene::advance);
-    //QObject::connect(timer, &QTimer::timeout, scene, &myScene::checkLife);
     QObject::connect(timerTwo, &QTimer::timeout, scene, &myScene::Stop);
     timer->start(1000 / 33);
     timerTwo->start(1000);
