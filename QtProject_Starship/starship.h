@@ -29,6 +29,7 @@ public:
     qreal angular_I = 0;//角冲量
     qreal gravity_y = 0;//重力竖向分量
     qreal gravity_x = 0;//重力横向分量
+    qreal field_x = 0, field_y = 0, angular_f = 0;//限制飞船不出边界的力
     bool detector = 0;
     qreal life = MAX_LIFE;
     bool operate=1;

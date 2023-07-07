@@ -43,6 +43,7 @@ void Coin::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 //        radial.setSpread(QGradient::PadSpread);
 //        painter->setBrush(radial);
 //        painter->drawEllipse(-radius, -radius, 2 * radius, 2 * radius);
+        painter->setPen(Qt::yellow);
         painter->setRenderHint(QPainter::Antialiasing, true);
         QLinearGradient linear(QPointF(0, -10), QPointF(0, 10));
         linear.setColorAt(0, QColorConstants::Svg::ivory);

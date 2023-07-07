@@ -5,7 +5,7 @@
 #include <QFont>
 
 //const qreal DAMAGE_RATIO=0.25;
-qreal clock_prompt::TIME_LIMIT=30;
+qreal clock_prompt::TIME_LIMIT=40;
 clock_prompt::clock_prompt(){
     timer=new QTimer();
     QObject::connect(timer, &QTimer::timeout, this, &clock_prompt::update_Time);
@@ -31,7 +31,7 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     QRect rectEx(-100,-50,200,20);
 
     if(seconds<=clock_prompt::TIME_LIMIT && life>0){
-        painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(seconds));
+        painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(40 - seconds));
         painter->setBrush(colorEx);
         painter->drawRect(rectEx);
         qreal DAMAGE_RATIO = life/MAX_LIFE;
@@ -53,7 +53,7 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
         painter->drawRect(rectEx);
 //        update();
     }
-    else if(seconds>clock_prompt::TIME_LIMIT){
+    else if(seconds>=clock_prompt::TIME_LIMIT){
         painter->drawText(rect, Qt::AlignCenter, QString("TIME IS UP!"));
         painter->setBrush(colorEx);
         painter->drawRect(rectEx);

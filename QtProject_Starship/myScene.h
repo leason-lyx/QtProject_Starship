@@ -33,7 +33,7 @@ public:
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
     clock_prompt* newClock = new clock_prompt();
-    qreal stopTime = 30;
+    qreal stopTime = 40;
     qreal Time = 0;
 public slots:
     void Stop();

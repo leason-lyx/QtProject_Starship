@@ -18,6 +18,7 @@
 #include <QRectF>
 #include <QDebug>
 #include <QGraphicsTextItem>
+#include <QtGui>
 
 main_menu::main_menu(QWidget *parent) :
     QDialog(parent),
@@ -35,7 +36,7 @@ main_menu::~main_menu()
 void main_menu::on_pushButton_clicked()
 {
     scene = new myScene();
-    scene->setSceneRect(-300, -300, 600, 600);
+    scene->setSceneRect(-640, -350, 1280, 700);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
     //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");

@@ -42,112 +42,125 @@ QPainterPath Starship::shape() const{
 
 void Starship::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    //Header
-    QLinearGradient linear(QPointF(-8, -20), QPointF(4, -20));
-    if(!detector){
-        linear.setColorAt(0, QColorConstants::Svg::goldenrod);
-        linear.setColorAt(1, QColorConstants::Svg::lightgoldenrodyellow);
+    if(operate){
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        //Header
+        QLinearGradient linear(QPointF(-8, -20), QPointF(4, -20));
+        if(!detector){
+            linear.setColorAt(0, QColorConstants::Svg::goldenrod);
+            linear.setColorAt(1, QColorConstants::Svg::lightgoldenrodyellow);
+        }
+        else{
+            linear.setColorAt(0, QColorConstants::Svg::crimson);
+            linear.setColorAt(1, QColorConstants::Svg::lightpink);
+        }
+        //    painter->setBrush(QColorConstants::Svg::goldenrod);
+        linear.setSpread(QGradient::PadSpread);
+        painter->setBrush(linear);
+        painter->drawEllipse(-8, -20, 16, 16);
+
+        //Body
+        linear = QLinearGradient(QPointF(-8, -12), QPointF(4, -12));
+        linear.setColorAt(0, QColorConstants::Svg::gray);
+        linear.setColorAt(1, QColorConstants::Svg::floralwhite);
+        linear.setSpread(QGradient::PadSpread);
+        painter->setBrush(linear);
+        //    painter->setBrush(QColorConstants::Svg::floralwhite);
+        painter->drawRect(-8, -12, 16, 20);
+
+        //Legs
+        linear = QLinearGradient(QPointF(-20, -20), QPointF(20, -20));
+        linear.setColorAt(0, QColorConstants::Svg::saddlebrown);
+        linear.setColorAt(1, QColorConstants::Svg::sienna);
+        linear.setSpread(QGradient::PadSpread);
+        painter->setBrush(linear);
+        //    painter->setBrush(QColorConstants::Svg::sienna);
+        QPoint pointL[3], pointR[3];
+        pointL[0].setX(-8);pointL[0].setY(0);
+        pointL[1].setX(-8);pointL[1].setY(8);
+        pointL[2].setX(-20);pointL[2].setY(20);
+        pointR[0].setX(8);pointR[0].setY(0);
+        pointR[1].setX(8);pointR[1].setY(8);
+        pointR[2].setX(20);pointR[2].setY(20);
+        painter->drawPolygon(pointL, 3);
+        painter->drawPolygon(pointR, 3);
+
+        //Engines
+        linear = QLinearGradient(QPointF(-24, -20), QPointF(24, -20));
+        linear.setColorAt(0, QColorConstants::Svg::burlywood);
+        linear.setColorAt(1, QColorConstants::Svg::wheat);
+        linear.setSpread(QGradient::PadSpread);
+        painter->setBrush(linear);
+        //    painter->setBrush(QColorConstants::Svg::burlywood);
+        painter->drawRect(-24, 18, 8, 2);
+        painter->drawRect(16, 18, 8, 2);
+
+        //Fire
+        painter->setPen(Qt::transparent);
+        if(acceleration > 0){
+            srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+            linear = QLinearGradient(QPointF(-8, 7), QPointF(-8, 23));
+            linear.setColorAt(0, QColorConstants::Svg::ivory);
+            linear.setColorAt(1, QColorConstants::Svg::crimson);
+            linear.setSpread(QGradient::PadSpread);
+            painter->setBrush(linear);
+            for(int i = 1; i <= 24; i++){
+                qreal x = rand() % 16 - 8; qreal y = rand() % 16 + 7;
+                painter->drawEllipse(x, y, 3, 3);
+            }
+            update();
+        }
+        if(acceleration < 0){
+            srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+            painter->setPen(QColorConstants::Svg::aliceblue);
+            painter->setBrush(QColorConstants::Svg::aliceblue);
+            for(int i = 1; i <= 8; i++){
+                qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 10;
+                qreal z = rand() % 8 + 16; qreal t = rand() % 8 + 10;
+                painter->drawEllipse(x, y, 1, 1);
+                painter->drawEllipse(z, t, 1, 1);
+            }
+            update();
+        }
+        if(angular_a > 0){
+            srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+            painter->setPen(QColorConstants::Svg::lightyellow);
+            painter->setBrush(QColorConstants::Svg::lightyellow);
+            for(int i = 1; i <= 8; i++){
+                qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 20;
+                painter->drawEllipse(x, y, 1, 1);
+            }
+            for(int i = 1; i <= 8; i++){
+                qreal x = rand() % 8 + 16; qreal y = rand() % 8 + 10;
+                painter->drawEllipse(x, y, 1, 1);
+            }
+            update();
+        }
+        if(angular_a < 0){
+            srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+            painter->setPen(QColorConstants::Svg::lightyellow);
+            painter->setBrush(QColorConstants::Svg::lightyellow);
+            for(int i = 1; i <= 8; i++){
+                qreal x = rand() % 8 + 16; qreal y = rand() % 8 + 20;
+                painter->drawEllipse(x, y, 1, 1);
+            }
+            for(int i = 1; i <= 8; i++){
+                qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 10;
+                painter->drawEllipse(x, y, 1, 1);
+            }
+            update();
+        }
     }
     else{
-        linear.setColorAt(0, QColorConstants::Svg::crimson);
-        linear.setColorAt(1, QColorConstants::Svg::lightpink);
-    }
-    //    painter->setBrush(QColorConstants::Svg::goldenrod);
-    linear.setSpread(QGradient::PadSpread);
-    painter->setBrush(linear);
-    painter->drawEllipse(-8, -20, 16, 16);
-
-    //Body
-    linear = QLinearGradient(QPointF(-8, -12), QPointF(4, -12));
-    linear.setColorAt(0, QColorConstants::Svg::gray);
-    linear.setColorAt(1, QColorConstants::Svg::floralwhite);
-    linear.setSpread(QGradient::PadSpread);
-    painter->setBrush(linear);
-    //    painter->setBrush(QColorConstants::Svg::floralwhite);
-    painter->drawRect(-8, -12, 16, 20);
-    
-    //Legs
-    linear = QLinearGradient(QPointF(-20, -20), QPointF(20, -20));
-    linear.setColorAt(0, QColorConstants::Svg::saddlebrown);
-    linear.setColorAt(1, QColorConstants::Svg::sienna);
-    linear.setSpread(QGradient::PadSpread);
-    painter->setBrush(linear);
-    //    painter->setBrush(QColorConstants::Svg::sienna);
-    QPoint pointL[3], pointR[3];
-    pointL[0].setX(-8);pointL[0].setY(0);
-    pointL[1].setX(-8);pointL[1].setY(8);
-    pointL[2].setX(-20);pointL[2].setY(20);
-    pointR[0].setX(8);pointR[0].setY(0);
-    pointR[1].setX(8);pointR[1].setY(8);
-    pointR[2].setX(20);pointR[2].setY(20);
-    painter->drawPolygon(pointL, 3);
-    painter->drawPolygon(pointR, 3);
-    
-    //Engines
-    linear = QLinearGradient(QPointF(-24, -20), QPointF(24, -20));
-    linear.setColorAt(0, QColorConstants::Svg::burlywood);
-    linear.setColorAt(1, QColorConstants::Svg::wheat);
-    linear.setSpread(QGradient::PadSpread);
-    painter->setBrush(linear);
-    //    painter->setBrush(QColorConstants::Svg::burlywood);
-    painter->drawRect(-24, 18, 8, 2);
-    painter->drawRect(16, 18, 8, 2);
-
-    //Fire
-    if(acceleration > 0){
-        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
-        linear = QLinearGradient(QPointF(-8, 7), QPointF(-8, 23));
-        linear.setColorAt(0, QColorConstants::Svg::ivory);
-        linear.setColorAt(1, QColorConstants::Svg::crimson);
-        linear.setSpread(QGradient::PadSpread);
         painter->setPen(Qt::transparent);
-        painter->setBrush(linear);
-        for(int i = 1; i <= 24; i++){
-            qreal x = rand() % 16 - 8; qreal y = rand() % 16 + 7;
-            painter->drawEllipse(x, y, 3, 3);
-        }
-        update();
-    }
-    if(acceleration < 0){
-        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
-        painter->setPen(QColorConstants::Svg::aliceblue);
-        painter->setBrush(QColorConstants::Svg::aliceblue);
-        for(int i = 1; i <= 8; i++){
-            qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 10;
-            qreal z = rand() % 8 + 16; qreal t = rand() % 8 + 10;
-            painter->drawEllipse(x, y, 1, 1);
-            painter->drawEllipse(z, t, 1, 1);
-        }
-        update();
-    }
-    if(angular_a > 0){
-        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
-        painter->setPen(QColorConstants::Svg::lightyellow);
-        painter->setBrush(QColorConstants::Svg::lightyellow);
-        for(int i = 1; i <= 8; i++){
-            qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 20;
-            painter->drawEllipse(x, y, 1, 1);
-        }
-        for(int i = 1; i <= 8; i++){
-            qreal x = rand() % 8 + 16; qreal y = rand() % 8 + 10;
-            painter->drawEllipse(x, y, 1, 1);
-        }
-        update();
-    }
-    if(angular_a < 0){
-        srand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
-        painter->setPen(QColorConstants::Svg::lightyellow);
-        painter->setBrush(QColorConstants::Svg::lightyellow);
-        for(int i = 1; i <= 8; i++){
-            qreal x = rand() % 8 + 16; qreal y = rand() % 8 + 20;
-            painter->drawEllipse(x, y, 1, 1);
-        }
-        for(int i = 1; i <= 8; i++){
-            qreal x = rand() % 8 - 24; qreal y = rand() % 8 + 10;
-            painter->drawEllipse(x, y, 1, 1);
-        }
-        update();
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        QRadialGradient radial(0, 0, 20);
+        radial.setColorAt(0, QColorConstants::Svg::darkorange);
+        radial.setColorAt(0.5, QColorConstants::Svg::crimson);
+        radial.setColorAt(1, Qt::transparent);
+        radial.setSpread(QGradient::PadSpread);
+        painter->setBrush(radial);
+        painter->drawEllipse(-20, -20, 40, 40);
     }
 }
 
@@ -218,11 +231,27 @@ void Starship::advance(int step){
             impulse = 0;
             impulse_x = 0;
             angular_I = 0;
+        }
 
+        //hit sceneRect
+        QRectF sceneRect = this->scene()->sceneRect();
+        if(!sceneRect.contains(boundingRect().translated(pos()))){
+            if(fabs(velocity) <= 4)field_y = - velocity * 1.6;
+            else field_y = -velocity * 1.8;
+            field_x = -velocity_x * 1.8;
+            angular_f = - angular_v * 1.8;
+            setPos(mapToParent(-velocity_x - 0.1 * velocity_x/fabs(velocity_x), velocity + 0.1 * velocity/fabs(velocity)));
+            angle = angle - angular_v;
+            setRotation(angle);
+        }
+        else{
+            field_y = 0;
+            field_x = 0;
+            angular_f = 0;
         }
 
         //velocity
-        velocity = velocity + acceleration + impulse + gravity_y;
+        velocity = velocity + acceleration + impulse + gravity_y + field_y;
         if(velocity >= 5)velocity = 5;
         if(velocity <= -3)velocity = -3;
         if(acceleration == 0 && velocity > 0) velocity -= 0.01;
@@ -232,11 +261,11 @@ void Starship::advance(int step){
         else if(velocity_x < 0) velocity_x += 0.01;
 
         //velocity_x
-        velocity_x = velocity_x + impulse_x + gravity_x;
+        velocity_x = velocity_x + impulse_x + gravity_x + field_x;
 
     
         //angular velocity
-        angular_v = angular_v + angular_a + angular_I;
+        angular_v = angular_v + angular_a + angular_I + angular_f;
         angle = angle + angular_v;
         if(angular_v >= 3)angular_v = 3;
         if(angular_v <= -3)angular_v = -3;
@@ -248,23 +277,27 @@ void Starship::advance(int step){
         setPos(mapToParent(velocity_x, -velocity));
         gravity_y = 0;
         gravity_x = 0;
-    }
 
-    //collect coins
-    QList<Coin*> allCoins;
-    QList<QGraphicsItem*> allItems = this->scene()->items();
-    foreach(QGraphicsItem* item, allItems){
-        if(item -> type() == Coin::UserType + 3){
-            Coin* coin = dynamic_cast<Coin*>(item);
-            if(!coin -> eaten)
-                allCoins.append(coin);
+        //collect coins
+        QList<Coin*> allCoins;
+//        QList<QGraphicsItem*> allItems = this->scene()->items();
+        foreach(QGraphicsItem* item, allItems){
+            if(item -> type() == Coin::UserType + 3){
+                Coin* coin = dynamic_cast<Coin*>(item);
+                if(!coin -> eaten)
+                    allCoins.append(coin);
+            }
+            else continue;
         }
-        else continue;
-    }
 
-    foreach(Coin* coin, allCoins){
-        if(this->collidesWithItem(coin, Qt::IntersectsItemShape)){
-            coin -> eaten = true;
+        foreach(Coin* coin, allCoins){
+            if(this->collidesWithItem(coin, Qt::IntersectsItemShape)){
+                coin -> eaten = true;
+            }
+        }
+
+        if(life <= 0){
+            operate = false;
         }
     }
 }
