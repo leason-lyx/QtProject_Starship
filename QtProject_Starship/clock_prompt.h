@@ -10,7 +10,7 @@
 #include <QPainter>
 #include <QObject>
 
-const qreal MAX_LIFE=20;
+const qreal MAX_LIFE=50;
 const qreal PER_DAMAGE=5;
 class clock_prompt : public QGraphicsItem, public QObject
 {
@@ -25,6 +25,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,QWidget *widget) override;
     QRectF boundingRect() const override;
     void checkLife();
+
+    inline void advance(int step) override;
 };
 
 #endif // CLOCK_PROMPT_H

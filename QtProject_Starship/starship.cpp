@@ -169,7 +169,7 @@ int Starship::type() const{
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
     if(!step || life<=0 || !operate)return;
-    //if(!operate)return ;
+//    if(!operate || !step)return ;
     else{
         //gravity
         QList<QGraphicsItem*> dangerPlanets;
@@ -178,7 +178,7 @@ void Starship::advance(int step){
             if(anotherItem == this)continue;
             if(anotherItem->type()==Planet::UserType + 1){
                 QLineF linetoPlanet(QPointF(0,0), mapFromItem(anotherItem, 0, 0));
-                if(linetoPlanet.length() <= 200){
+                if(linetoPlanet.length() <= 150){
                     dangerPlanets.append(anotherItem);
                     qreal r = linetoPlanet.length();
                     qreal dx = linetoPlanet.dx(), dy = linetoPlanet.dy();
@@ -206,7 +206,10 @@ void Starship::advance(int step){
             setPos(mapToParent(-velocity_x - 0.1 * velocity_x/fabs(velocity_x), velocity + 0.1 * velocity/fabs(velocity)));
             angle = angle - angular_v;
             setRotation(angle);
-            life -= 5;
+            if(impulse_x * impulse_x + impulse * impulse > 10)
+                life -= (impulse_x * impulse_x + impulse * impulse) * 0.3;
+            if(angular_I > 2)
+                life -= angular_I * 0.3;
         }
         else{
             impulse = 0;

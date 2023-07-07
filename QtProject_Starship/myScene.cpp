@@ -35,7 +35,10 @@ myScene::myScene(){
     star_5.setPos(QPointF(star_5.px, star_5.py));
     this->addItem(&star_5);
     setFocusItem(&star_5);
-    ship.setPos(QPointF(0,0));
+    newClock->setPos(QPointF(350, -200));
+    this->addItem(newClock);
+    setFocusItem(newClock);
+    ship.setPos(QPointF(0, 0));
     this->addItem(&ship);
     setFocusItem(&ship);
     /*
