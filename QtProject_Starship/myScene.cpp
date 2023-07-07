@@ -90,7 +90,12 @@ void myScene::keyReleaseEvent(QKeyEvent * event){
 void myScene::Stop(){
     Time+=1;
     newClock->life=ship.life;
-    //QTime currentTime=QTime::currentTime();
+    qreal tempScore = ship.score;
+//    for(int i=0;i<7;i++){
+//        if(coins[i].eaten) tempScore++;
+//    }
+    newClock->score=tempScore;
+//    QTime currentTime=QTime::currentTime();
     if(Time>=stopTime){
         ship.operate=0;
     }

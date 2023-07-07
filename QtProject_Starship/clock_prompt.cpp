@@ -29,8 +29,12 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setPen(color);
     QRect rect(-100,-100,200,50);
     QRect rectEx(-100,-50,200,20);
+    QRect rectForCoin(-110,-150,210,80);
+
 
     if(seconds<=clock_prompt::TIME_LIMIT && life>0){
+        std::cerr<<"score:"<<score<<std::endl;
+        painter->drawText(rectForCoin, Qt::AlignCenter, QString("SCORE: %1 POINT(S)").arg(score));
         painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(40 - seconds));
         painter->setBrush(colorEx);
         painter->drawRect(rectEx);
@@ -45,16 +49,18 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
         linear.setSpread(QGradient::PadSpread);
         painter->setBrush(linear);
         painter->drawRect(rectIn);
-//        update();
+        update();
     }
     else if(life<=0){
         painter->drawText(rect, Qt::AlignCenter, QString("CRASHHHED!"));
+        painter->drawText(rectForCoin, Qt::AlignCenter, QString("FINAL SCORE: %1 POINT(S)").arg(score));
         painter->setBrush(colorEx);
         painter->drawRect(rectEx);
-//        update();
+        update();
     }
     else if(seconds>=clock_prompt::TIME_LIMIT){
         painter->drawText(rect, Qt::AlignCenter, QString("TIME IS UP!"));
+        painter->drawText(rectForCoin, Qt::AlignCenter, QString("FINAL SCORE: %1 POINT(S)").arg(score));
         painter->setBrush(colorEx);
         painter->drawRect(rectEx);
         qreal DAMAGE_RATIO=life/MAX_LIFE;
@@ -68,7 +74,7 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
         linear.setSpread(QGradient::PadSpread);
         painter->setBrush(linear);
         painter->drawRect(rectIn);
-//        update();
+        update();
     }
 }
 QRectF clock_prompt::boundingRect() const {
@@ -83,6 +89,7 @@ void clock_prompt::advance(int step){
     else{
         myScene* space = dynamic_cast<myScene*>(this -> scene());
         life = space -> ship.life;
+        score = space -> ship.score;
         update();
     }
 }

@@ -3,6 +3,7 @@
 #include "starship.h"
 #include "planet.h"
 #include "coin.h"
+#include "myscene.h"
 
 #include <QPainter>
 #include <QStyleOption>
@@ -292,6 +293,7 @@ void Starship::advance(int step){
 
         foreach(Coin* coin, allCoins){
             if(this->collidesWithItem(coin, Qt::IntersectsItemShape)){
+                score += 10;
                 coin -> eaten = true;
             }
         }

@@ -20,6 +20,7 @@ public:
     QTimer *timer;
     qreal seconds=0;
     qreal life=MAX_LIFE;
+    qreal score=0;
     void update_Time();
     //void advance(int step);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,QWidget *widget) override;

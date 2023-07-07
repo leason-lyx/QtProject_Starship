@@ -32,6 +32,7 @@ public:
     qreal field_x = 0, field_y = 0, angular_f = 0;//限制飞船不出边界的力
     bool detector = 0;
     qreal life = MAX_LIFE;
+    qreal score = 0;
     bool operate=1;
 };
 
