@@ -1,6 +1,5 @@
 #include "coin.h"
 
-#include <random>
 #include <QPainter>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
@@ -20,6 +19,15 @@ Coin::Coin(qreal x, qreal y)
 //    px = xRat + 100;
 //    py = yRat + 100;
     px = x, py = y;
+}
+
+void Coin::operator=(const Coin &x){
+    px=x.px;
+    py=x.py;
+}
+
+Coin::Coin(){
+    px=0;py=0;
 }
 
 QRectF Coin::boundingRect() const{

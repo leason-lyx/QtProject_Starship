@@ -7,6 +7,8 @@ class Coin : public QGraphicsItem
 {
 public:
     Coin(qreal x, qreal y);
+    Coin();
+    void operator=(const Coin &x);
     qreal px, py;
     bool eaten = 0;
     qreal radius = 10;

@@ -23,18 +23,20 @@ public:
     Planet star_5 = Planet(-250, -160, 50, 234897);
 
 //    Coin coin;
-    Coin coins[7] = {Coin(400, 0), Coin(-320, -200), Coin(300, 200),
-                  Coin(170, -160), Coin(-360, 120), Coin(-90, 120), Coin(110, -20)};
-
+    //Coin coins[7] = {Coin(400, 0), Coin(-320, -200), Coin(300, 200),
+    //              Coin(170, -160), Coin(-360, 120), Coin(-90, 120), Coin(110, -20)};
+    Coin coins[7];
     Starship ship;
     myScene();
     //    ship.setPos(QPointF(0,0));
     //    scene.addItem(&ship);
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
+    bool validRandom(qreal x, qreal y);
     clock_prompt* newClock = new clock_prompt();
     qreal stopTime = 40;
     qreal Time = 0;
+
 public slots:
     void Stop();
 };

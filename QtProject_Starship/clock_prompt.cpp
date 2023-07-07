@@ -12,13 +12,13 @@ clock_prompt::clock_prompt(){
     timer->start(1000);
 }
 void clock_prompt::update_Time(){
-    std::cerr<<seconds<<" ";
+    //std::cerr<<seconds<<" ";
     seconds++;
     update();
 }
 //void advance(int step){}
 void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,QWidget *widget) {
-    std::cerr<<"ptint"<<std::endl;
+    //std::cerr<<"ptint"<<std::endl;
     QFont font;
     font.setFamily("Terminal");
     font.setPointSize(12);//文字大小
@@ -31,9 +31,8 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     QRect rectEx(-100,-50,200,20);
     QRect rectForCoin(-110,-150,210,80);
 
-
     if(seconds<=clock_prompt::TIME_LIMIT && life>0){
-        std::cerr<<"score:"<<score<<std::endl;
+        //std::cerr<<"score:"<<score<<std::endl;
         painter->drawText(rectForCoin, Qt::AlignCenter, QString("SCORE: %1 POINT(S)").arg(score));
         painter->drawText(rect, Qt::AlignCenter, QString("TIME: %1 SECONDS").arg(40 - seconds));
         painter->setBrush(colorEx);
@@ -49,16 +48,16 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
         linear.setSpread(QGradient::PadSpread);
         painter->setBrush(linear);
         painter->drawRect(rectIn);
-        update();
+//        update();
     }
     else if(life<=0){
         painter->drawText(rect, Qt::AlignCenter, QString("CRASHHHED!"));
         painter->drawText(rectForCoin, Qt::AlignCenter, QString("FINAL SCORE: %1 POINT(S)").arg(score));
         painter->setBrush(colorEx);
         painter->drawRect(rectEx);
-        update();
+//        update();
     }
-    else if(seconds>=clock_prompt::TIME_LIMIT){
+    else if(seconds>clock_prompt::TIME_LIMIT){
         painter->drawText(rect, Qt::AlignCenter, QString("TIME IS UP!"));
         painter->drawText(rectForCoin, Qt::AlignCenter, QString("FINAL SCORE: %1 POINT(S)").arg(score));
         painter->setBrush(colorEx);
@@ -74,11 +73,11 @@ void clock_prompt::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
         linear.setSpread(QGradient::PadSpread);
         painter->setBrush(linear);
         painter->drawRect(rectIn);
-        update();
+//        update();
     }
 }
 QRectF clock_prompt::boundingRect() const {
-    return QRectF(-100,-100,200,70);
+    return QRectF(-100,-150,250,125);
 };
 void clock_prompt::checkLife(){
 
@@ -89,7 +88,7 @@ void clock_prompt::advance(int step){
     else{
         myScene* space = dynamic_cast<myScene*>(this -> scene());
         life = space -> ship.life;
-        score = space -> ship.score;
+        score = space->newClock->score;
         update();
     }
 }

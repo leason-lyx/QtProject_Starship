@@ -18,7 +18,6 @@
 #include <QRectF>
 #include <QDebug>
 #include <QGraphicsTextItem>
-#include <QtGui>
 
 main_menu::main_menu(QWidget *parent) :
     QDialog(parent),
