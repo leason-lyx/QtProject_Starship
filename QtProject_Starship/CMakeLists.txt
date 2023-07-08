@@ -50,7 +50,6 @@ set(PROJECT_SOURCES
 
         scorewindow.h
         scorewindow.cpp
-
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
