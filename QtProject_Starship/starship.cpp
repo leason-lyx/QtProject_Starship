@@ -174,15 +174,15 @@ int Starship::type() const{
 
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
-    if ((life<=0 || !operate)&&(ended==0))
-    {
-        ScoreWindow* w;
-        w->resize(800, 600);
-        w->show();
+//    if ((life<=0 || !operate)&&(ended==0))
+//    {
+//        ScoreWindow* w;
+//        w->resize(800, 600);
+//        w->show();
 
-        w->animateScore(dynamic_cast<myScene*>(this->scene())->newClock->score); // 将最终得分设置为100，分数会滚动到这个值
-        ended=1;
-    }
+//        w->animateScore(dynamic_cast<myScene*>(this->scene())->newClock->score); // 将最终得分设置为100，分数会滚动到这个值
+//        ended=1;
+//    }
     if(!step || life<=0 || !operate)
     {
         return;
