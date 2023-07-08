@@ -33,6 +33,9 @@ public:
     bool detector = 0;
     qreal life = MAX_LIFE;
     bool operate=1;
+    bool ended=0;
+signals:
+    void gameOver(int score);
 };
 
 #endif // STARSHIP_H

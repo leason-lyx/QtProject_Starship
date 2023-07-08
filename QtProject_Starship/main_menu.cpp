@@ -1,5 +1,5 @@
 #include "main_menu.h"
-#include "clock_prompt.h"
+//#include "clock_prompt.h"
 #include "ui_main_menu.h"
 #include "credits.h"
 #include "PageSwitcher.h"
@@ -18,6 +18,8 @@
 #include <QRectF>
 #include <QDebug>
 #include <QGraphicsTextItem>
+//#include <QMediaPlayer>
+//#include <QAudioOutput>
 
 main_menu::main_menu(QWidget *parent) :
     QDialog(parent),
@@ -38,11 +40,12 @@ void main_menu::on_pushButton_clicked()
     scene->setSceneRect(-640, -350, 1280, 700);
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-    //QGraphicsTextItem clock_prompt=new QGraphicsTextItem(" TIME: 00:00 ");
-//    clock_prompt* clock_object=new clock_prompt();
-//    clock_object->setPos(250,200);
-//    scene->addItem(clock_object);
-    
+//    QMediaPlayer player;
+//    QAudioOutput audioOutput; // chooses the default audio routing
+//    player.setAudioOutput(&audioOutput);
+//    player.setSource(QUrl::fromLocalFile("./background.mp3"));
+//    player.play();
+
     game_scene *view = new game_scene(scene);
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);

@@ -12,6 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+#find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Multimedia REQUIRED)
+#find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Multimedia REQUIRED)
+
 set(PROJECT_SOURCES
         main.cpp
         starship.cpp
@@ -45,6 +48,9 @@ set(PROJECT_SOURCES
         walkthrough_page2.cpp
         walkthrough_page2.ui
 
+        scorewindow.h
+        scorewindow.cpp
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -70,7 +76,11 @@ else()
     endif()
 endif()
 
-target_link_libraries(star_ship PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Multimedia)
+target_link_libraries(star_ship PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
+#find_package(Qt6 REQUIRED COMPONENTS Multimedia)
+#target_link_libraries(mytarget PRIVATE Qt6::Multimedia)
+
 
 
 set_target_properties(star_ship PROPERTIES

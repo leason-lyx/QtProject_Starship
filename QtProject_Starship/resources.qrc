@@ -7,5 +7,6 @@
         <file>images/background3.jpg</file>
         <file>images/background4.jpg</file>
         <file>images/main_menu.jpg</file>
+        <file>background.mp3</file>
     </qresource>
 </RCC>

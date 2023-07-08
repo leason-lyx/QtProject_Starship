@@ -3,6 +3,7 @@
 #include "starship.h"
 #include "planet.h"
 #include "coin.h"
+#include "myScene.h"
 
 #include <QPainter>
 #include <QStyleOption>
@@ -14,7 +15,10 @@
 constexpr qreal Pi = M_PI;
 constexpr qreal TwoPi = 2 * M_PI;
 
-Starship::Starship(){}
+Starship::Starship(){
+
+}
+
 Starship::Starship(QGraphicsItem *x):QGraphicsItem(x){}
 static qreal normalizeAngle(qreal angle)
 {
@@ -170,8 +174,19 @@ int Starship::type() const{
 
 void Starship::advance(int step){
     std::cerr<<this->operate<<std::endl;
-    if(!step || life<=0 || !operate)return;
-//    if(!operate || !step)return ;
+    if ((life<=0 || !operate)&&(ended==0))
+    {
+        ScoreWindow* w;
+        w->resize(800, 600);
+        w->show();
+
+        w->animateScore(dynamic_cast<myScene*>(this->scene())->newClock->score); // 将最终得分设置为100，分数会滚动到这个值
+        ended=1;
+    }
+    if(!step || life<=0 || !operate)
+    {
+        return;
+    }
     else{
         //gravity
         QList<QGraphicsItem*> dangerPlanets;

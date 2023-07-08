@@ -5,6 +5,7 @@
 #include "planet.h"
 #include "clock_prompt.h"
 #include "coin.h"
+#include "scorewindow.h"
 
 #include <QGraphicsView>
 #include <QGraphicsScene>

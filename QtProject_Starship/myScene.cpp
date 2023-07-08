@@ -2,10 +2,6 @@
 //#include "starship.h"
 //#include "starship.cpp"
 
-//#include <QGraphicsItem>
-//#include <QGraphicsView>
-//#include <QGraphicsScene>
-//#include <QKeyEvent>
 #include <QDebug>
 #include <QTimer>
 #include <QList>
@@ -124,4 +120,13 @@ void myScene::Stop(){
         ship.operate=0;
     }
     if(newClock->life<=0) ship.operate=0;
+//    if (ship.operate==0)
+//    {
+//        qDebug("ship0");
+//        ScoreWindow* w;
+//        w->resize(800, 600);
+//        w->show();
+
+//        w->animateScore(tempScore); // 将最终得分设置为tempScore，分数会滚动到这个值
+//    }
 }
